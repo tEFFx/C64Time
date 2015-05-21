@@ -244,7 +244,7 @@ IGNOREBLOCKEND##
                 *=$1000
                 sei             ;disable interrupt flag
                 jsr clear_screen
-                ;jsr print_logo
+                jsr print_logo
                 jsr setup_sprite
                 ldy #%0111111
                 sty $dc0d
@@ -266,7 +266,8 @@ IGNOREBLOCKEND##
                 jmp *           ;loop until the end of time
 
 irq             dec $d019       ;tell irq HEY! im here and everything is fiiiiine
-                jsr sprite_loop
+                jsr update_sprite
+                jsr update_logo
                 jmp $ea81       ;return to kernel interrupt routine
 
 clear_screen    lda #$20
@@ -339,31 +340,31 @@ load_sprite     sei
                 lda #$20
                 rts
 
-sprite_loop     ldx #$00
-loopx           ldy #$00
-loopy           iny
-                cpy #$ee
-                bne loopy
-                ldy #$00
-loopyy          iny
-                cpy #$ee
-                bne loopyy
-                inx
+update_sprite   lda $d004       ;d004 gets to be sine_table index for now...
+                tax             ;as we only have two sprites allocated atm
                 lda sine_table,x
                 adc #$60
                 sta $d001
-                txa
+                lda $d004
                 adc #$7f
-                tay
-                lda sine_table,y
+                tax
+                lda sine_table,x
                 adc #$60
                 sta $d003
+                lda $d004
+                adc #$04
+                sta $d004
                 ldy #$00
                 jsr check_ground
                 ldy #$02
                 jsr check_ground
                 cpx #$ff
-                bne loopx
+                rts
+
+update_logo     ldx #$00         
+                lda logo_color1
+                adc #$01
+                sta $d022
                 rts
 
 check_ground    lda $d001,y     ;load sprite Y-pos
@@ -383,8 +384,6 @@ get_spr_index   tya             ;load x into a
                 asl             ;shift left to restore A
                 rts 
 
-logo_color1     BYTE  $02, $0a, $09, $08, $09, $0a, $02
-logo_color2     BYTE  $0a, $02, $08, $09, $08, $02, $0a
 logo            BYTE    $00,$01,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20
                 BYTE    $03,$04,$05,$09,$0D,$0E,$0F,$10,$16,$17,$18,$19,$1E,$1F,$02,$21,$26,$27,$28
                 BYTE    $06,$07,$08,$0C,$11,$12,$13,$14,$1A,$1B,$1C,$1D,$22,$23,$24,$25,$29,$2A,$1A
