@@ -10,7 +10,7 @@
                 jsr clear_screen
                 jsr print_logo
                 jsr setup_sprite
-                ldy #%0111111
+main_loop       ldy #%0111111
                 sty $dc0d
                 sty $dd0d
                 lda $dc0d
@@ -21,13 +21,13 @@
                 ldx #>irq       ;get pointer to irq routine
                 sta $314        ;store low addr
                 stx $315        ;store hi addr
-                lda #$00        ;trigger interrupt @ row 0 (of screen)
+                lda #$ff        ;trigger interrupt @ row 0 (of screen)
                 sta $d012
                 lda $d011       ;we need to borrow 1 bit (screen is 320 pixels > 255)
                 and #$7f        ;which is the first bit
                 sta $d011
                 cli             ;clear interrupt flag
-                jmp *           ;loop until the end of time
+                jmp main_loop           ;loop until the end of time
 
 irq             dec $d019       ;tell irq HEY! im here and everything is fiiiiine
                 jsr update_sprite
@@ -76,7 +76,6 @@ print_logo_loop lda #$00
                 
 setup_sprite    lda #$00
                 sta $d020
-                lda #$06
                 sta $d021
                 lda #$03
                 ;sta $d01d       ;stretch width
@@ -97,9 +96,9 @@ load_sprite     sei
                 lda #$03        
                 sta $d015       ;enable sprite 1 & 2
                 sta $d01c       ;enable multicolor
-                lda #$80
+                lda #$76
                 sta $d000      ;sprite1 X
-                lda #$d4
+                lda #$de
                 sta $d002       ;sprite2 X
                 lda #$20
                 rts

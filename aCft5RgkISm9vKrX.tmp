@@ -24,7 +24,7 @@ IGNOREBLOCKEND##
 IGNOREBLOCKSTART##
  BYTE $00,$00,$00,$00,$00,$00,$00,$00
  BYTE $00,$02,$AA,$80,$0A,$AA,$A0,$20
- BYTE $A8,$28,$0C,$23,$08,$03,$00,$C8
+ BYTE $A8,$28,$0C,$23,$08,$00,$00,$08
  BYTE $20,$A8,$20,$28,$88,$A8,$AA,$02
  BYTE $AA,$AA,$AA,$AA,$8A,$AA,$A2,$8A
  BYTE $AA,$A2,$8A,$AA,$A2,$82,$AA,$82
@@ -32,7 +32,7 @@ IGNOREBLOCKSTART##
  BYTE $80,$02,$00,$80,$02,$00,$80,$00
  BYTE $00,$00,$00,$00,$00,$00,$00,$00
  BYTE $00,$02,$AA,$80,$8A,$AA,$A0,$A0
- BYTE $A8,$28,$8C,$23,$08,$83,$00,$C8
+ BYTE $A8,$28,$8C,$23,$08,$80,$00,$08
  BYTE $A0,$A8,$20,$A8,$88,$A8,$AA,$02
  BYTE $AA,$2A,$AA,$AA,$0A,$AA,$A2,$0A
  BYTE $AA,$A2,$0A,$AA,$A2,$02,$AA,$82
@@ -42,13 +42,13 @@ IGNOREBLOCKSTART##
 IGNOREBLOCKEND##
                 *=$3800
 IGNOREBLOCKSTART##
-	BYTE	21,10,1,1,1,1,1,2
-	BYTE	80,88,168,168,168,136,134,134
+	BYTE	21,10,1,1,1,1,1,1
+	BYTE	80,88,168,168,168,138,134,134
 	BYTE	84,160,128,128,128,128,128,128
 	BYTE	1,1,1,6,6,6,6,6
 	BYTE	134,134,134,134,1,1,1,1
-	BYTE	0,0,0,128,128,192,128,128
-	BYTE	90,42,10,26,24,24,24,104
+	BYTE	0,0,0,128,128,128,128,128
+	BYTE	90,42,10,8,24,24,24,104
 	BYTE	85,170,170,0,0,0,0,0
 	BYTE	160,160,96,96,96,104,104,24
 	BYTE	85,26,24,24,24,24,24,24
@@ -246,7 +246,7 @@ IGNOREBLOCKEND##
                 jsr clear_screen
                 jsr print_logo
                 jsr setup_sprite
-                ldy #%0111111
+main_loop       ldy #%0111111
                 sty $dc0d
                 sty $dd0d
                 lda $dc0d
@@ -257,13 +257,13 @@ IGNOREBLOCKEND##
                 ldx #>irq       ;get pointer to irq routine
                 sta $314        ;store low addr
                 stx $315        ;store hi addr
-                lda #$00        ;trigger interrupt @ row 0 (of screen)
+                lda #$ff        ;trigger interrupt @ row 0 (of screen)
                 sta $d012
                 lda $d011       ;we need to borrow 1 bit (screen is 320 pixels > 255)
                 and #$7f        ;which is the first bit
                 sta $d011
                 cli             ;clear interrupt flag
-                jmp *           ;loop until the end of time
+                jmp main_loop           ;loop until the end of time
 
 irq             dec $d019       ;tell irq HEY! im here and everything is fiiiiine
                 jsr update_sprite
@@ -312,7 +312,6 @@ print_logo_loop lda #$00
                 
 setup_sprite    lda #$00
                 sta $d020
-                lda #$06
                 sta $d021
                 lda #$03
                 ;sta $d01d       ;stretch width
@@ -333,9 +332,9 @@ load_sprite     sei
                 lda #$03        
                 sta $d015       ;enable sprite 1 & 2
                 sta $d01c       ;enable multicolor
-                lda #$80
+                lda #$76
                 sta $d000      ;sprite1 X
-                lda #$d4
+                lda #$de
                 sta $d002       ;sprite2 X
                 lda #$20
                 rts
