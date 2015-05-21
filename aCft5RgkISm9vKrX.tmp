@@ -279,10 +279,6 @@ print_logo_loop lda #$00
                 inx
                 cpx #$13
                 bne print_logo_loop
-                lda #$00
-                sta $d800
-                lda #$01
-                sta $0400
                 
 setup_sprite    lda #$00
                 sta $d020

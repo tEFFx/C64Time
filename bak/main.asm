@@ -6,7 +6,6 @@
                 incbin "logo.cst",0,196
 
                 *=$1000
-                tax
                 lda #$20
 clear_loop      sta $0400,x
                 sta $0500,x
@@ -18,8 +17,16 @@ clear_loop      sta $0400,x
 print_logo      lda $d018
                 ora #$0e
                 sta $d018
+                lda #$0a
+                sta $d022
+                lda #$02
+                sta $d023
+                lda $d016
+                ora #$10
+                sta $d016
                 ldx #$00
-print_logo_loop lda logo,x
+print_logo_loop lda #$00
+                lda logo,x
                 sta $045a,x
                 lda logo,x+19   ;2
                 sta $045a,x+40
@@ -60,7 +67,7 @@ load_sprite     sei
                 lda #$03        
                 sta $d015       ;enable sprite 1 & 2
                 sta $d01c       ;enable multicolor
-                lda #$5a
+                lda #$52
                 sta $d000      ;sprite1 X
                 lda #$ff
                 sta $d002       ;sprite2 X
@@ -107,7 +114,7 @@ get_spr_index   tya             ;load x into a
                 asl             ;shift left to restore A
                 rts 
 logo            BYTE    $00,$01,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20
-                BYTE    $03,$04,$05,$09,$0D,$0E,$0F,$10,$16,$17,$18,$19,$1E,$1F,$20,$21,$26,$27,$28
+                BYTE    $03,$04,$05,$09,$0D,$0E,$0F,$10,$16,$17,$18,$19,$1E,$1F,$02,$21,$26,$27,$28
                 BYTE    $06,$07,$08,$0C,$11,$12,$13,$14,$1A,$1B,$1C,$1D,$22,$23,$24,$25,$29,$2A,$1A
                 BYTE    $20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20
                 BYTE    $20,$20,$20,$20,$2B,$2C,$2D,$2E,$32,$33,$34,$35,$3E,$3F,$40,$20,$20,$20,$20
