@@ -10,7 +10,7 @@
                 jsr clear_screen
                 jsr print_logo
                 jsr setup_sprite
-main_loop       ldy #%0111111
+                ldy #%0111111
                 sty $dc0d
                 sty $dd0d
                 lda $dc0d
@@ -21,17 +21,44 @@ main_loop       ldy #%0111111
                 ldx #>irq       ;get pointer to irq routine
                 sta $314        ;store low addr
                 stx $315        ;store hi addr
-                lda #$ff        ;trigger interrupt @ row 0 (of screen)
+                lda #$00        ;trigger interrupt @ row 0 (of screen)
                 sta $d012
-                lda $d011       ;we need to borrow 1 bit (screen is 320 pixels > 255)
-                and #$7f        ;which is the first bit
-                sta $d011
+                ;lda $d011       ;we need to borrow 1 bit (screen is 320 pixels > 255)
+                ;and #$7f        ;which is the last bit
+                ;sta $d011
                 cli             ;clear interrupt flag
-                jmp main_loop           ;loop until the end of time
+loop            jmp loop
 
 irq             dec $d019       ;tell irq HEY! im here and everything is fiiiiine
+                lda #$02
+                sta $d020
+                sta $d021
+                lda #<irq2
+                ldx #>irq2       ;get pointer to irq routine
+                sta $314        ;store low addr
+                stx $315        ;store hi addr
+                lda #$4f        ;trigger interrupt @ row 16 (of screen)
+                sta $d012
+                lda $d011       ;reset, since we dont need that last bits
+                and #%0111111
+                sta $d011
+                jmp $ea81       
+
+irq2            dec $d019       ;tell irq HEY! im here and everything is fiiiiine
+                lda #$00
+                sta $d020
+                sta $d021
                 jsr update_sprite
                 jsr update_logo
+                lda #<irq
+                ldx #>irq       ;get pointer to irq routine
+                sta $314        ;store low addr
+                stx $315        ;store hi addr
+                lda #$00        ;trigger interrupt @ row 320 (of screen)
+                sta $d012
+                ;lda $d011       ;we need to borrow 1 bit (screen is 320 pixels > 255)
+                ;ora #%1000000   ;which is the last bit
+                ;sta $d011
                 jmp $ea81       ;return to kernel interrupt routine
 
 clear_screen    lda #$20
