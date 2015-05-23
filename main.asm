@@ -30,9 +30,7 @@
 loop            jmp loop
 
 irq             dec $d019       ;tell irq HEY! im here and everything is fiiiiine
-                lda #$02
-                sta $d020
-                sta $d021
+                jsr scroll_message
                 lda #<irq2
                 ldx #>irq2       ;get pointer to irq routine
                 sta $314        ;store low addr
@@ -45,9 +43,6 @@ irq             dec $d019       ;tell irq HEY! im here and everything is fiiiiin
                 jmp $ea81       
 
 irq2            dec $d019       ;tell irq HEY! im here and everything is fiiiiine
-                lda #$00
-                sta $d020
-                sta $d021
                 jsr update_sprite
                 jsr update_logo
                 lda #<irq
@@ -69,11 +64,7 @@ clear_loop      sta $0400,x
                 dex
                 bne clear_loop
                 rts
-
-print_logo      lda $d018
-                ora #$0e
-                sta $d018
-                lda #$0a
+print_logo      lda #$0a
                 sta $d022
                 lda #$02
                 sta $d023
@@ -99,6 +90,40 @@ print_logo_loop lda #$00
                 inx
                 cpx #$13
                 bne print_logo_loop
+                rts
+
+scroll_message  ldx #$00
+print_loop      lda #%0001
+                sta $d800,x
+                txa
+                adc credits_offset
+                tay
+                lda credits,y
+                cmp #$40
+                bcc goodtogo          ;THIS KINDOF MEANS GREATER THAN, NEVER FORGET!!!
+                sbc #$40
+goodtogo        sta $0400,x
+                inx
+                cpx #$28
+                bne print_loop
+                lda #21
+                sta $d018
+                jsr set_scroll
+                lda scroll_offset
+                cmp #$07              ;only offset text if we're back at the beginning
+                bne check_offset
+                inc credits_offset
+check_offset    dec scroll_offset
+                cmp #$00
+                bne scrollisdone
+                lda #$07
+                sta scroll_offset
+scrollisdone    rts
+
+set_scroll      lda $d016
+                and #%11111000
+                adc scroll_offset
+                sta $d016
                 rts
                 
 setup_sprite    lda #$00
@@ -151,7 +176,14 @@ update_sprite   lda $d004       ;d004 gets to be sine_table index for now...
                 cpx #$ff
                 rts
 
-update_logo     ldx #$00         
+update_logo     lda $d016
+                and #%11111000
+                ora #%00010000
+                sta $d016
+                lda $d018
+                ora #$0e
+                sta $d018
+                ldx #$00         
                 lda $d022
                 adc #$01
                 sta $d022
@@ -174,6 +206,9 @@ get_spr_index   tya             ;load x into a
                 asl             ;shift left to restore A
                 rts 
 
+scroll_offset   byte 6
+credits_offset  byte 10         ;credits is 64 long
+credits         text "                 SHMOWZOW! ALGEBRAIC!! PRESS FIRE TO START.    WRITTEN BY TEFFX 2015"
 logo            BYTE    $00,$01,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20
                 BYTE    $03,$04,$05,$09,$0D,$0E,$0F,$10,$16,$17,$18,$19,$1E,$1F,$02,$21,$26,$27,$28
                 BYTE    $06,$07,$08,$0C,$11,$12,$13,$14,$1A,$1B,$1C,$1D,$22,$23,$24,$25,$29,$2A,$1A
