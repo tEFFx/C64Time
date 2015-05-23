@@ -70,6 +70,7 @@ print_logo      lda #$0a
                 sta $d023
                 lda $d016
                 ora #$10
+                and #%11110111
                 sta $d016
                 ldx #$00
 print_logo_loop lda #$00
@@ -92,17 +93,19 @@ print_logo_loop lda #$00
                 bne print_logo_loop
                 rts
 
-scroll_message  ldx #$00
+scroll_message  lda #$02
+                sta $d020
+                ldx #$00
 print_loop      lda #%0001
-                sta $d800,x
+                sta $d828,x
                 txa
                 adc credits_offset
                 tay
-                lda credits,y           ;i have such nice routine names
+                lda credits,y
                 cmp #$40
                 bcc goodtogo          ;THIS KINDOF MEANS GREATER THAN, NEVER FORGET!!!
                 sbc #$40
-goodtogo        sta $0400,x
+goodtogo        sta $0428,x
                 inx
                 cpx #$28
                 bne print_loop
@@ -121,8 +124,9 @@ check_offset    dec scroll_offset
 scrollisdone    rts
 
 set_scroll      lda $d016
-                and #%11111000
+                and #%11110000
                 adc scroll_offset
+                and #%11110111
                 sta $d016
                 rts
                 
@@ -177,7 +181,7 @@ update_sprite   lda $d004       ;d004 gets to be sine_table index for now...
                 rts
 
 update_logo     lda $d016
-                and #%11111000
+                and #%11110000
                 ora #%00010000
                 sta $d016
                 lda $d018

@@ -306,6 +306,7 @@ print_logo      lda #$0a
                 sta $d023
                 lda $d016
                 ora #$10
+                and #%11110111
                 sta $d016
                 ldx #$00
 print_logo_loop lda #$00
@@ -328,17 +329,19 @@ print_logo_loop lda #$00
                 bne print_logo_loop
                 rts
 
-scroll_message  ldx #$00
+scroll_message  lda #$02
+                sta $d020
+                ldx #$00
 print_loop      lda #%0001
-                sta $d800,x
+                sta $d828,x
                 txa
                 adc credits_offset
                 tay
-                lda credits,y           ;i have such nice routine names
+                lda credits,y
                 cmp #$40
                 bcc goodtogo          ;THIS KINDOF MEANS GREATER THAN, NEVER FORGET!!!
                 sbc #$40
-goodtogo        sta $0400,x
+goodtogo        sta $0428,x
                 inx
                 cpx #$28
                 bne print_loop
@@ -357,8 +360,9 @@ check_offset    dec scroll_offset
 scrollisdone    rts
 
 set_scroll      lda $d016
-                and #%11111000
+                and #%11110000
                 adc scroll_offset
+                and #%11101111
                 sta $d016
                 rts
                 
@@ -413,7 +417,7 @@ update_sprite   lda $d004       ;d004 gets to be sine_table index for now...
                 rts
 
 update_logo     lda $d016
-                and #%11111000
+                and #%11110000
                 ora #%00010000
                 sta $d016
                 lda $d018
@@ -443,7 +447,7 @@ get_spr_index   tya             ;load x into a
                 rts 
 
 scroll_offset   byte 6
-credits_offset  byte 0         ;credits is 64 long
+credits_offset  byte 230         ;credits is 64 long
 credits         text "WHAT TIME IS IT? SHMOWZOW, IT'S ADVENTURE TIME!! 8BIT COMPUTERS"
                 text " ARE SO ALGEBRAIC! I'VE RUN OUT OF THINGS TO SAY... SO ENJOY WH"
                 text "ATEVER THIS IS!                 WRITTEN BY TEFFX 2015 / ADVENTU"
