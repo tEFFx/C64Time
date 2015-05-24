@@ -8,7 +8,7 @@
                 incbin "logo.cst",0,196
 
                        * = $0801
-                        
+                incasm "macros.asm"
 sysline:        
                 byte $0b,$08,$01,$00,$9e,$32,$30,$36,$31,$00,$00,$00 ;= SYS 2061
                 * = $080d
@@ -154,10 +154,6 @@ load_sprite     sei
                 sta $d027
                 lda #$07         ;yello 7 (spr2 color)
                 sta $d028
-                lda #$d8
-                sta $07f8       ;set sprite1 to $2000 (40 * 80 = 2000 HEX)
-                lda #$da
-                sta $07f9       ;set sprite2 to $2040
                 lda #$03        
                 sta $d015       ;enable sprite 1 & 2
                 sta $d01c       ;enable multicolor
@@ -176,17 +172,14 @@ update_sprite   lda $d004       ;d004 gets to be sine_table index for now...
                 lda $d004
                 adc #$7f
                 tax
+                check_ground $d001,$07f8,#$d8
                 lda sine_table,x
                 adc #$60
                 sta $d003
                 lda $d004
                 adc #$04
                 sta $d004
-                ldy #$00
-                jsr check_ground
-                ldy #$02
-                jsr check_ground
-                cpx #$28
+                check_ground $d003,$07f9,#$da
                 rts
 
 update_logo     lda $d016
@@ -202,22 +195,22 @@ update_logo     lda $d016
                 sta $d022
                 rts
 
-check_ground    lda $d001,y     ;load sprite Y-pos
-                cmp #$c4      ;compare to ground
-                bne fall        ;if not on ground fall
-                jsr get_spr_index
-                adc #$d8        ;add #$80
-                sta $07f8,y     ;set to first sprite with X offset
-                rts             ;return
-fall            jsr get_spr_index
-                adc #$d9
-                sta $07f8,y
-                rts
-get_spr_index   tya             ;load x into a
-                lsr             ;shift right to divide by 2 (in order to offset sprite memory)
-                tay             ;store in X
-                asl             ;shift left to restore A
-                rts 
+;check_ground    lda $d001,y     ;load sprite Y-pos
+;                cmp #$c4      ;compare to ground
+;                bne fall        ;if not on ground fall
+;                jsr get_spr_index
+;                adc #$d8        ;add #$80
+;                sta $07f8,y     ;set to first sprite with X offset
+;                rts             ;return
+;fall            jsr get_spr_index
+;                adc #$d9
+;                sta $07f8,y
+;                rts
+;get_spr_index   tya             ;load x into a
+;                lsr             ;shift right to divide by 2 (in order to offset sprite memory)
+;                tay             ;store in X
+;                asl             ;shift left to restore A
+;                rts 
 
 scroll_offset   byte 6
 credits_offset  byte 240         ;credits is 64 long
