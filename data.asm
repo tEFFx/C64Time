@@ -1,9 +1,9 @@
 scroll_offset   byte 6
 credits_offset  byte 240         ;credits is 64 long
 credits         text "WHAT TIME IS IT? SHMOWZOW, IT'S ADVENTURE TIME!! 8BIT COMPUTERS"
-                text " ARE SO ALGEBRAIC! DANG, I'VE RUN OUT OF THINGS TO SAY... SO ENJOY"
-                text " WHATEVER THIS IS!                 ADVENTURE TIME (C) CARTOON NETWORK / "
-                text "C64 THING WRITTEN BY TEFFX 2015                                        "
+                text " ARE SO ALGEBRAIC!       DANG, I'VE RUN OUT OF STUFF TO SAY... SO ENJOY"
+                text " WHATEVER THIS IS!           ADVENTURE TIME (C) CARTOON NETWORK / "
+                text "C64 THING WRITTEN BY TEFFX 2015                                         "
 logo            BYTE    $00,$01,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20
                 BYTE    $03,$04,$05,$09,$0D,$0E,$0F,$10,$16,$17,$18,$19,$1E,$1F,$02,$21,$26,$27,$28
                 BYTE    $06,$07,$08,$0C,$11,$12,$13,$14,$1A,$1B,$1C,$1D,$22,$23,$24,$25,$29,$2A,$1A
