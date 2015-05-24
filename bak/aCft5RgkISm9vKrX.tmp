@@ -340,9 +340,9 @@ print_logo_loop lda #$00
                 rts
 
 scroll_message  ldx #$00
-                stx $0428
+                stx $0450
 print_loop      lda #%0001
-                sta $d828,x
+                sta $d850,x
                 txa
                 adc credits_offset
                 tay
@@ -350,7 +350,7 @@ print_loop      lda #%0001
                 cmp #$40
                 bcc goodtogo          ;THIS KINDOF MEANS GREATER THAN, NEVER FORGET!!!
                 sbc #$40
-goodtogo        sta $0428,x-1
+goodtogo        sta $0450,x-1
                 inx
                 cpx #$28
                 bne print_loop
