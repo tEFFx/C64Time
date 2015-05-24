@@ -1,0 +1,452 @@
+##{0:0:0:main.prg}C:\Users\Erik\Documents\GitHub\C64Time\main.asm
+
+                *=$1000
+                IncBin "adventure.dat",$02
+                *=$3600
+IGNOREBLOCKSTART##
+ BYTE $0C,$00,$30,$3F,$00,$FC,$3F,$FF
+ BYTE $FC,$3F,$AA,$BC,$3E,$8A,$2C,$3E
+ BYTE $8A,$2C,$3E,$AA,$AC,$3E,$A0,$AC
+ BYTE $3F,$AA,$BC,$1F,$FF,$F4,$55,$55
+ BYTE $55,$55,$55,$55,$45,$55,$51,$45
+ BYTE $55,$51,$45,$55,$51,$85,$55,$52
+ BYTE $04,$00,$10,$04,$00,$10,$08,$00
+ BYTE $20,$08,$00,$20,$08,$00,$20,$00
+ BYTE $0C,$00,$30,$3F,$00,$FC,$3F,$FF
+ BYTE $FC,$3F,$AA,$BC,$3E,$8A,$2E,$3E
+ BYTE $8A,$2D,$3E,$AA,$AD,$3E,$A0,$AD
+ BYTE $3F,$AA,$BD,$1F,$FF,$F5,$55,$55
+ BYTE $54,$55,$55,$54,$45,$55,$50,$45
+ BYTE $55,$50,$45,$55,$50,$85,$55,$50
+ BYTE $04,$00,$10,$01,$00,$04,$02,$00
+ BYTE $08,$28,$00,$08,$00,$00,$08,$00
+
+IGNOREBLOCKEND##
+                *=$3680
+IGNOREBLOCKSTART##
+ BYTE $00,$00,$00,$00,$00,$00,$00,$00
+ BYTE $00,$02,$AA,$80,$0A,$AA,$A0,$20
+ BYTE $A8,$28,$0C,$23,$08,$00,$00,$08
+ BYTE $20,$A8,$20,$28,$88,$A8,$AA,$02
+ BYTE $AA,$AA,$AA,$AA,$8A,$AA,$A2,$8A
+ BYTE $AA,$A2,$8A,$AA,$A2,$82,$AA,$82
+ BYTE $02,$00,$80,$02,$00,$80,$02,$00
+ BYTE $80,$02,$00,$80,$02,$00,$80,$00
+ BYTE $00,$00,$00,$00,$00,$00,$00,$00
+ BYTE $00,$02,$AA,$80,$8A,$AA,$A0,$A0
+ BYTE $A8,$28,$8C,$23,$08,$80,$00,$08
+ BYTE $A0,$A8,$20,$A8,$88,$A8,$AA,$02
+ BYTE $AA,$2A,$AA,$AA,$0A,$AA,$A2,$0A
+ BYTE $AA,$A2,$0A,$AA,$A2,$02,$AA,$82
+ BYTE $02,$00,$80,$08,$00,$80,$08,$00
+ BYTE $20,$08,$00,$08,$00,$00,$00,$00
+
+IGNOREBLOCKEND##
+                *=$3800
+IGNOREBLOCKSTART##
+	BYTE	21,10,1,1,1,1,1,1
+	BYTE	80,88,168,168,168,138,134,134
+	BYTE	84,160,128,128,128,128,128,128
+	BYTE	1,1,1,6,6,6,6,6
+	BYTE	134,134,134,134,1,1,1,1
+	BYTE	0,0,0,128,128,128,128,128
+	BYTE	90,42,10,8,24,24,24,104
+	BYTE	85,170,170,0,0,0,0,0
+	BYTE	160,160,96,96,96,104,104,24
+	BYTE	85,26,24,24,24,24,24,24
+	BYTE	104,96,96,96,96,96,96,96
+	BYTE	24,24,24,26,6,6,6,6
+	BYTE	24,24,24,24,24,24,25,106
+	BYTE	144,36,8,9,2,2,2,2
+	BYTE	88,24,24,24,24,24,6,6
+	BYTE	1,1,1,1,1,1,6,6
+	BYTE	85,134,134,134,134,6,6,6
+	BYTE	2,2,2,2,6,8,24,96
+	BYTE	6,6,1,1,1,0,0,0
+	BYTE	6,6,152,168,168,96,96,96
+	BYTE	5,6,6,6,6,6,6,22
+	BYTE	0,0,0,0,0,0,0,1
+	BYTE	85,169,9,2,0,0,0,0
+	BYTE	21,6,6,6,6,6,6,6
+	BYTE	9,2,64,64,64,144,144,164
+	BYTE	81,166,102,104,96,96,96,96
+	BYTE	84,168,0,0,0,1,86,168
+	BYTE	6,6,6,6,6,6,22,90
+	BYTE	36,41,9,10,2,2,0,0
+	BYTE	96,96,160,160,160,160,128,128
+	BYTE	85,170,24,24,24,24,24,24
+	BYTE	69,145,33,9,1,1,1,1
+	BYTE	0,0,0,0,0,0,0,0
+	BYTE	85,105,97,97,97,97,97,97
+	BYTE	24,24,24,24,24,104,104,128
+	BYTE	1,1,1,1,1,0,0,0
+	BYTE	128,128,128,128,128,128,101,42
+	BYTE	97,97,97,97,97,65,129,5
+	BYTE	84,169,129,129,129,129,134,136
+	BYTE	21,6,134,134,134,134,6,6
+	BYTE	86,170,10,2,0,0,0,0
+	BYTE	134,134,134,129,129,129,129,129
+	BYTE	5,6,6,134,134,134,153,170
+	BYTE	5,26,42,96,128,0,0,0
+	BYTE	85,170,170,24,24,24,24,24
+	BYTE	81,164,168,9,2,0,0,0
+	BYTE	85,106,24,24,24,24,24,24
+	BYTE	24,24,24,24,24,24,24,24
+	BYTE	24,24,24,24,24,24,96,128
+	BYTE	24,24,24,24,24,104,104,170
+	BYTE	85,41,6,6,6,6,6,6
+	BYTE	0,0,64,64,64,64,144,144
+	BYTE	0,0,1,1,1,1,1,6
+	BYTE	85,104,160,160,160,160,160,160
+	BYTE	6,6,6,6,6,6,6,6
+	BYTE	144,144,144,164,36,36,36,36
+	BYTE	6,6,6,26,26,24,24,24
+	BYTE	160,160,160,160,160,96,96,96
+	BYTE	6,6,6,6,26,26,106,106
+	BYTE	41,9,10,10,10,2,2,2
+	BYTE	104,96,160,160,160,128,128,128
+	BYTE	96,96,96,96,104,104,106,106
+	BYTE	85,26,26,6,6,6,6,6
+	BYTE	85,170,0,0,0,0,0,0
+	BYTE	84,168,40,8,0,0,0,0
+	BYTE	0,0,85,170,170,0,0,0
+	BYTE	6,6,6,6,6,26,26,106
+	BYTE	0,0,0,0,0,0,85,170
+	BYTE	0,0,0,1,6,24,104,160
+	BYTE	0,255,255,0,0,0,0,0
+	BYTE	0,0,0,0,255,255,0,0
+	BYTE	48,48,48,48,48,48,48,48
+	BYTE	12,12,12,12,12,12,12,12
+	BYTE	0,0,0,224,240,56,24,24
+	BYTE	24,24,28,15,7,0,0,0
+	BYTE	24,24,56,240,224,0,0,0
+	BYTE	192,192,192,192,192,192,255,255
+	BYTE	192,224,112,56,28,14,7,3
+	BYTE	3,7,14,28,56,112,224,192
+	BYTE	255,255,192,192,192,192,192,192
+	BYTE	255,255,3,3,3,3,3,3
+	BYTE	0,60,126,126,126,126,60,0
+	BYTE	0,0,0,0,0,255,255,0
+	BYTE	54,127,127,127,62,28,8,0
+	BYTE	96,96,96,96,96,96,96,96
+	BYTE	0,0,0,7,15,28,24,24
+	BYTE	195,231,126,60,60,126,231,195
+	BYTE	0,60,126,102,102,126,60,0
+	BYTE	24,24,102,102,24,24,60,0
+	BYTE	6,6,6,6,6,6,6,6
+	BYTE	8,28,62,127,62,28,8,0
+	BYTE	24,24,24,255,255,24,24,24
+	BYTE	192,192,48,48,192,192,48,48
+	BYTE	24,24,24,24,24,24,24,24
+	BYTE	0,0,3,62,118,54,54,0
+	BYTE	255,127,63,31,15,7,3,1
+	BYTE	0,0,0,0,0,0,0,0
+	BYTE	240,240,240,240,240,240,240,240
+	BYTE	0,0,0,0,255,255,255,255
+	BYTE	255,0,0,0,0,0,0,0
+	BYTE	0,0,0,0,0,0,0,255
+	BYTE	192,192,192,192,192,192,192,192
+	BYTE	204,204,51,51,204,204,51,51
+	BYTE	3,3,3,3,3,3,3,3
+	BYTE	0,0,0,0,204,204,51,51
+	BYTE	255,254,252,248,240,224,192,128
+	BYTE	3,3,3,3,3,3,3,3
+	BYTE	24,24,24,31,31,24,24,24
+	BYTE	0,0,0,0,15,15,15,15
+	BYTE	24,24,24,31,31,0,0,0
+	BYTE	0,0,0,248,248,24,24,24
+	BYTE	0,0,0,0,0,0,255,255
+	BYTE	0,0,0,31,31,24,24,24
+	BYTE	24,24,24,255,255,0,0,0
+	BYTE	0,0,0,255,255,24,24,24
+	BYTE	24,24,24,248,248,24,24,24
+	BYTE	192,192,192,192,192,192,192,192
+	BYTE	224,224,224,224,224,224,224,224
+	BYTE	7,7,7,7,7,7,7,7
+	BYTE	255,255,0,0,0,0,0,0
+	BYTE	255,255,255,0,0,0,0,0
+	BYTE	0,0,0,0,0,255,255,255
+	BYTE	3,3,3,3,3,3,255,255
+	BYTE	0,0,0,0,240,240,240,240
+	BYTE	15,15,15,15,0,0,0,0
+	BYTE	24,24,24,248,248,0,0,0
+	BYTE	240,240,240,240,0,0,0,0
+	BYTE	240,240,240,240,15,15,15,15
+	BYTE	195,153,145,145,159,153,195,255
+	BYTE	231,195,153,129,153,153,153,255
+	BYTE	131,153,153,131,153,153,131,255
+	BYTE	195,153,159,159,159,153,195,255
+	BYTE	135,147,153,153,153,147,135,255
+	BYTE	129,159,159,135,159,159,129,255
+	BYTE	129,159,159,135,159,159,159,255
+	BYTE	195,153,159,145,153,153,195,255
+	BYTE	153,153,153,129,153,153,153,255
+	BYTE	195,231,231,231,231,231,195,255
+	BYTE	225,243,243,243,243,147,199,255
+	BYTE	153,147,135,143,135,147,153,255
+	BYTE	159,159,159,159,159,159,129,255
+	BYTE	156,136,128,148,156,156,156,255
+	BYTE	153,137,129,129,145,153,153,255
+	BYTE	195,153,153,153,153,153,195,255
+	BYTE	131,153,153,131,159,159,159,255
+	BYTE	195,153,153,153,153,195,241,255
+	BYTE	131,153,153,131,135,147,153,255
+	BYTE	195,153,159,195,249,153,195,255
+	BYTE	129,231,231,231,231,231,231,255
+	BYTE	153,153,153,153,153,153,195,255
+	BYTE	153,153,153,153,153,195,231,255
+	BYTE	156,156,156,148,128,136,156,255
+	BYTE	153,153,195,231,195,153,153,255
+	BYTE	153,153,153,195,231,231,231,255
+	BYTE	129,249,243,231,207,159,129,255
+	BYTE	195,207,207,207,207,207,195,255
+	BYTE	243,237,207,131,207,157,3,255
+	BYTE	195,243,243,243,243,243,195,255
+	BYTE	255,231,195,129,231,231,231,231
+	BYTE	255,239,207,128,128,207,239,255
+	BYTE	255,255,255,255,255,255,255,255
+	BYTE	231,231,231,231,255,255,231,255
+	BYTE	153,153,153,255,255,255,255,255
+	BYTE	153,153,0,153,0,153,153,255
+	BYTE	231,193,159,195,249,131,231,255
+	BYTE	157,153,243,231,207,153,185,255
+	BYTE	195,153,195,199,152,153,192,255
+	BYTE	249,243,231,255,255,255,255,255
+	BYTE	243,231,207,207,207,231,243,255
+	BYTE	207,231,243,243,243,231,207,255
+	BYTE	255,153,195,0,195,153,255,255
+	BYTE	255,231,231,129,231,231,255,255
+	BYTE	255,255,255,255,255,231,231,207
+	BYTE	255,255,255,129,255,255,255,255
+	BYTE	255,255,255,255,255,231,231,255
+	BYTE	255,252,249,243,231,207,159,255
+	BYTE	195,153,145,137,153,153,195,255
+	BYTE	231,231,199,231,231,231,129,255
+	BYTE	195,153,249,243,207,159,129,255
+	BYTE	195,153,249,227,249,153,195,255
+	BYTE	249,241,225,153,128,249,249,255
+	BYTE	129,159,131,249,249,153,195,255
+	BYTE	195,153,159,131,153,153,195,255
+	BYTE	129,153,243,231,231,231,231,255
+	BYTE	195,153,153,195,153,153,195,255
+	BYTE	195,153,153,193,249,153,195,255
+	BYTE	255,255,231,255,255,231,255,255
+	BYTE	255,255,231,255,255,231,231,207
+	BYTE	241,231,207,159,207,231,241,255
+	BYTE	255,255,129,255,129,255,255,255
+	BYTE	143,231,243,249,243,231,143,255
+	BYTE	195,153,249,243,231,255,231,255
+	BYTE	255,255,255,0,0,255,255,255
+	BYTE	247,227,193,128,128,227,193,255
+	BYTE	231,231,231,231,231,231,231,231
+	BYTE	255,255,255,0,0,255,255,255
+	BYTE	255,255,0,0,255,255,255,255
+IGNOREBLOCKEND##
+
+                       * = $0801
+                incasm "macros.asm"
+sysline:        
+                byte $0b,$08,$01,$00,$9e,$32,$30,$36,$31,$00,$00,$00 ;= SYS 2061
+                * = $080d
+                sei             ;disable interrupt flag
+                jsr clear_screen
+                jsr print_logo
+                jsr setup_sprite
+                ldy #%0111111
+                sty $dc0d
+                sty $dd0d
+                lda $dc0d
+                lda $dd0d       ;cancel all cia-irq interrupts
+                lda #$01
+                sta $d01a       ;bit1 = irq rasterbeam aka once every drawn frame
+                sta $d019
+                lda #<irq
+                ldx #>irq       ;get pointer to irq routine
+                sta $314        ;store low addr
+                stx $315        ;store hi addr
+                lda #$00        ;trigger interrupt @ row 0 (of screen)
+                sta $d012
+                ;lda $d011       ;we need to borrow 1 bit (screen is 320 pixels > 255)
+                ;and #$7f        ;which is the last bit
+                ;sta $d011
+                cli             ;clear interrupt flag
+                lda #$00
+                jsr $1000      ;init music
+loop            jmp loop
+
+irq             dec $d019       ;tell irq HEY! im here and everything is fiiiiine
+                jsr scroll_message
+                lda #<irq2
+                ldx #>irq2       ;get pointer to irq routine
+                sta $314        ;store low addr
+                stx $315        ;store hi addr
+                lda #$4f        ;trigger interrupt @ row 16 (of screen)
+                sta $d012
+                lda $d011       ;reset, since we dont need that last bits
+                and #%0111111
+                sta $d011
+                jmp $ea81       
+
+irq2            dec $d019       ;tell irq HEY! im here and everything is fiiiiine
+                jsr update_sprite
+                jsr update_logo
+                jsr $1003      ;play music
+                lda #<irq
+                ldx #>irq       ;get pointer to irq routine
+                sta $314        ;store low addr
+                stx $315        ;store hi addr
+                lda #$00        ;trigger interrupt @ row 320 (of screen)
+                sta $d012
+                ;lda $d011       ;we need to borrow 1 bit (screen is 320 pixels > 255)
+                ;ora #%1000000   ;which is the last bit
+                ;sta $d011
+                jmp $ea81       ;return to kernel interrupt routine
+
+clear_screen    lda #$20
+clear_loop      sta $0400,x
+                sta $0500,x
+                sta $0600,x
+                sta $0700,x
+                dex
+                bne clear_loop
+                rts
+print_logo      lda #$0a
+                sta $d022
+                lda #$02
+                sta $d023
+                lda $d016
+                ora #$10
+                and #%11110111
+                sta $d016
+                ldx #$00
+print_logo_loop lda #$00
+                lda logo,x
+                sta $04aa,x
+                lda logo,x+19   ;2
+                sta $04aa,x+40
+                lda logo,x+38   ;3
+                sta $04aa,x+80
+                lda logo,x+57   ;4
+                sta $04aa,x+120
+                lda logo,x+76   ;5
+                sta $04aa,x+160  
+                lda logo,x+95   ;6
+                sta $04aa,x+200
+                lda logo,x+114   ;7
+                sta $04aa,x+240
+                inx
+                cpx #$13
+                bne print_logo_loop
+                rts
+
+scroll_message  ldx #$00
+                stx $0450
+print_loop      lda #%0001
+                sta $d850,x
+                txa
+                adc credits_offset
+                tay
+                lda credits,y
+                cmp #$40
+                bcc goodtogo          ;THIS KINDOF MEANS GREATER THAN, NEVER FORGET!!!
+                sbc #$40
+goodtogo        sta $0450,x-1
+                inx
+                cpx #$28
+                bne print_loop
+                lda #21
+                sta $d018
+                jsr set_scroll
+                lda scroll_offset
+                cmp #$07              ;only offset text if we're back at the beginning
+                bne check_offset
+                inc credits_offset
+check_offset    dec scroll_offset
+                cmp #$00
+                bne scrollisdone
+                lda #$07
+                sta scroll_offset
+scrollisdone    rts
+
+set_scroll      lda $d016
+                and #%11110000
+                adc scroll_offset
+                and #%11110111
+                sta $d016
+                rts
+                
+setup_sprite    lda #$00
+                sta $d020
+                sta $d021
+                lda #$03
+                ;sta $d01d       ;stretch width
+                sta $d017       ;stretch height
+                lda #$0e        ;blue 01
+                sta $d025
+                lda #$01         ;white 11
+                sta $d026
+load_sprite     sei
+                lda #$0a         ;pink 10 (spr1 color)
+                sta $d027
+                lda #$07         ;yello 7 (spr2 color)
+                sta $d028
+                lda #$03        
+                sta $d015       ;enable sprite 1 & 2
+                sta $d01c       ;enable multicolor
+                lda #$76
+                sta $d000      ;sprite1 X
+                lda #$de
+                sta $d002       ;sprite2 X
+                lda #$20
+                rts
+
+update_sprite   lda $d004       ;d004 gets to be sine_table index for now...
+                tax             ;as we only have two sprites allocated atm
+                lda sine_table,x
+                adc #$60
+                sta $d001
+                lda $d004
+                adc #$7f
+                tax
+                check_ground $d001,$07f8,#$d8
+                lda sine_table,x
+                adc #$60
+                sta $d003
+                lda $d004
+                adc #$04
+                sta $d004
+                check_ground $d003,$07f9,#$da
+                rts
+
+update_logo     lda $d016
+                and #%11110000
+                ora #%00010000
+                sta $d016
+                lda $d018
+                ora #$0e
+                sta $d018
+                ldx #$00         
+                lda $d022
+                adc #$01
+                sta $d022
+                rts
+
+;check_ground    lda $d001,y     ;load sprite Y-pos
+;                cmp #$c4      ;compare to ground
+;                bne fall        ;if not on ground fall
+;                jsr get_spr_index
+;                adc #$d8        ;add #$80
+;                sta $07f8,y     ;set to first sprite with X offset
+;                rts             ;return
+;fall            jsr get_spr_index
+;                adc #$d9
+;                sta $07f8,y
+;                rts
+;get_spr_index   tya             ;load x into a
+;                lsr             ;shift right to divide by 2 (in order to offset sprite memory)
+;                tay             ;store in X
+;                asl             ;shift left to restore A
+;                rts 
+
+                incasm "data.asm"
+
