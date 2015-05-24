@@ -1,11 +1,17 @@
-                *=$2000
+                *=$1000
+                IncBin "adventure.dat",$02
+                *=$3600
                 incbin "finn.spt",1,2,true
-                *=$2080
+                *=$3680
                 incbin "jake.spt",1,2,true
                 *=$3800
                 incbin "logo.cst",0,196
 
-                *=$1000
+                       * = $0801
+                        
+sysline:        
+                byte $0b,$08,$01,$00,$9e,$32,$30,$36,$31,$00,$00,$00 ;= SYS 2061
+                * = $080d
                 sei             ;disable interrupt flag
                 jsr clear_screen
                 jsr print_logo
@@ -17,6 +23,7 @@
                 lda $dd0d       ;cancel all cia-irq interrupts
                 lda #$01
                 sta $d01a       ;bit1 = irq rasterbeam aka once every drawn frame
+                sta $d019
                 lda #<irq
                 ldx #>irq       ;get pointer to irq routine
                 sta $314        ;store low addr
@@ -27,6 +34,8 @@
                 ;and #$7f        ;which is the last bit
                 ;sta $d011
                 cli             ;clear interrupt flag
+                lda #$00
+                jsr $1000      ;init music
 loop            jmp loop
 
 irq             dec $d019       ;tell irq HEY! im here and everything is fiiiiine
@@ -45,6 +54,7 @@ irq             dec $d019       ;tell irq HEY! im here and everything is fiiiiin
 irq2            dec $d019       ;tell irq HEY! im here and everything is fiiiiine
                 jsr update_sprite
                 jsr update_logo
+                jsr $1003      ;play music
                 lda #<irq
                 ldx #>irq       ;get pointer to irq routine
                 sta $314        ;store low addr
@@ -93,9 +103,8 @@ print_logo_loop lda #$00
                 bne print_logo_loop
                 rts
 
-scroll_message  lda #$02
-                sta $d020
-                ldx #$00
+scroll_message  ldx #$00
+                stx $0428
 print_loop      lda #%0001
                 sta $d828,x
                 txa
@@ -105,7 +114,7 @@ print_loop      lda #%0001
                 cmp #$40
                 bcc goodtogo          ;THIS KINDOF MEANS GREATER THAN, NEVER FORGET!!!
                 sbc #$40
-goodtogo        sta $0428,x
+goodtogo        sta $0428,x-1
                 inx
                 cpx #$28
                 bne print_loop
@@ -145,9 +154,9 @@ load_sprite     sei
                 sta $d027
                 lda #$07         ;yello 7 (spr2 color)
                 sta $d028
-                lda #$80
+                lda #$d8
                 sta $07f8       ;set sprite1 to $2000 (40 * 80 = 2000 HEX)
-                lda #$82
+                lda #$da
                 sta $07f9       ;set sprite2 to $2040
                 lda #$03        
                 sta $d015       ;enable sprite 1 & 2
@@ -197,11 +206,11 @@ check_ground    lda $d001,y     ;load sprite Y-pos
                 cmp #$c4      ;compare to ground
                 bne fall        ;if not on ground fall
                 jsr get_spr_index
-                adc #$80        ;add #$80
+                adc #$d8        ;add #$80
                 sta $07f8,y     ;set to first sprite with X offset
                 rts             ;return
 fall            jsr get_spr_index
-                adc #$81
+                adc #$d9
                 sta $07f8,y
                 rts
 get_spr_index   tya             ;load x into a
@@ -211,11 +220,11 @@ get_spr_index   tya             ;load x into a
                 rts 
 
 scroll_offset   byte 6
-credits_offset  byte 230         ;credits is 64 long
+credits_offset  byte 240         ;credits is 64 long
 credits         text "WHAT TIME IS IT? SHMOWZOW, IT'S ADVENTURE TIME!! 8BIT COMPUTERS"
-                text " ARE SO ALGEBRAIC! I'VE RUN OUT OF THINGS TO SAY... SO ENJOY WH"
-                text "ATEVER THIS IS!                 WRITTEN BY TEFFX 2015 / ADVENTU"
-                text "RE TIME (C) CARTOON NETWORK                                        "
+                text " ARE SO ALGEBRAIC! DANG, I'VE RUN OUT OF THINGS TO SAY... SO ENJOY"
+                text " WHATEVER THIS IS!                 ADVENTURE TIME (C) CARTOON NETWORK / "
+                text "C64 THING WRITTEN BY TEFFX 2015                                        "
 logo            BYTE    $00,$01,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20
                 BYTE    $03,$04,$05,$09,$0D,$0E,$0F,$10,$16,$17,$18,$19,$1E,$1F,$02,$21,$26,$27,$28
                 BYTE    $06,$07,$08,$0C,$11,$12,$13,$14,$1A,$1B,$1C,$1D,$22,$23,$24,$25,$29,$2A,$1A
