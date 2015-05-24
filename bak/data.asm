@@ -1,8 +1,8 @@
 scroll_offset   byte 6
-credits_offset  byte 240         ;credits is 64 long
-credits         text "WHAT TIME IS IT? SHMOWZOW, IT'S ADVENTURE TIME!! 8BIT COMPUTERS"
-                text " ARE SO ALGEBRAIC!       DANG, I'VE RUN OUT OF STUFF TO SAY... SO ENJOY"
-                text " WHATEVER THIS IS!           ADVENTURE TIME (C) CARTOON NETWORK / "
+credits_offset  byte 220         ;credits is 64 long
+credits         text " WHAT TIME IS IT? IT'S ADVENTURE TIME! SHMOWZOW"
+                text ", AND IT'S RUNNING ON A 0.98MHZ C64!! 8BIT COMPUTERS ARE TOTALLY MATHEMATICAL."
+                text " LITERALLY!            ADVENTURE TIME (C) CARTOON NETWORK / "
                 text "C64 THING WRITTEN BY TEFFX 2015                                         "
 logo            BYTE    $00,$01,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20
                 BYTE    $03,$04,$05,$09,$0D,$0E,$0F,$10,$16,$17,$18,$19,$1E,$1F,$02,$21,$26,$27,$28
