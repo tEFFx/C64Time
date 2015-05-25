@@ -161,7 +161,6 @@ load_sprite     sei
                 sta $d000      ;sprite1 X
                 lda #$de
                 sta $d002       ;sprite2 X
-                lda #$20
                 rts
 
 update_sprite   lda $d004       ;d004 gets to be sine_table index for now...

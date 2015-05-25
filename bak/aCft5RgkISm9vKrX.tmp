@@ -398,6 +398,23 @@ load_sprite     sei
                 lda #$de
                 sta $d002       ;sprite2 X
                 lda #$20
+                lda #$d9
+                sta $d7f8
+                lda #$db
+                sta $08f9
+intro_loop      ldx #$00
+@loopx          ldy #$00
+@loopy          iny
+                cpy #$27
+                bne @loopy
+                inx
+                cpx #$27
+                bne @loopx
+                inc $d001
+                inc $d002
+                lda $d001
+                cmp #$c3
+                bne intro_loop
                 rts
 
 update_sprite   lda $d004       ;d004 gets to be sine_table index for now...
